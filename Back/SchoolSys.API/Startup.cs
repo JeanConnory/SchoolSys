@@ -33,6 +33,7 @@ namespace SchoolSys.API
             );
 
             services.AddControllers();
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SchoolSys.API", Version = "v1" });
@@ -54,6 +55,10 @@ namespace SchoolSys.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(cors => cors.AllowAnyHeader()
+                                .AllowAnyMethod()
+                                .AllowAnyOrigin());
 
             app.UseEndpoints(endpoints =>
             {
